@@ -1,6 +1,4 @@
-import axios from "axios";
 import * as CryptoJS from "crypto-js";
-import { z } from "zod";
 import NodeRSA from "node-rsa";
 
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
@@ -9,17 +7,14 @@ const PUBLIC_KEY = process.env.ISOLARCLOUD_PUBLIC_KEY ?? "";
 const APP_KEY = process.env.ISOLARCLOUD_APP_KEY ?? "";
 const ACCESS_KEY = process.env.ISOLARCLOUD_ACCESS_KEY ?? "";
 
-// Mocked DB
-interface Post {
-  id: number;
-  name: string;
+interface ISolarMetrics {
+  data_last_update_time: string;
+  design_capacity: { unit: string; value: number };
+  co2_reduce_total: { unit: string; value: number };
+  install_date: string;
+  curr_power: { value: number; unit: string };
+  total_energy: { value: number; unit: string };
 }
-const posts: Post[] = [
-  {
-    id: 1,
-    name: "Hello World",
-  },
-];
 
 export function encryptRSA(value: string, publicKey: string): string {
   const key = new NodeRSA();
@@ -50,9 +45,8 @@ const generateRandomWord = (length: number) => {
   let result = "";
   const characters =
     "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-  const charactersLength = characters.length;
   for (let i = 0; i < length; i++) {
-    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    result += characters.charAt(Math.floor(Math.random() * characters.length));
   }
   return result;
 };
@@ -62,28 +56,28 @@ const makeAPIRequest = async (
   body: any,
   userid: string,
 ): Promise<any> => {
-  let randomKey = "web" + generateRandomWord(13);
+  const randomKey = "web" + generateRandomWord(13);
 
-  let headers = new Headers();
+  const headers = new Headers();
   headers.append("content-type", "application/json;charset=UTF-8");
   headers.append("sys_code", "200");
   headers.append("x-access-key", ACCESS_KEY);
   headers.append("x-random-secret-key", encryptRSA(randomKey, PUBLIC_KEY));
   headers.append("x-limit-obj", encryptRSA(userid, PUBLIC_KEY));
 
-  let encryptedBody = encryptAES(body, randomKey);
+  const encryptedBody = encryptAES(body, randomKey);
 
-  let requestOptions = {
+  const requestOptions = {
     method: "POST",
     headers: headers,
     body: encryptedBody,
   };
 
-  let response = await fetch(url, requestOptions);
+  const response = await fetch(url, requestOptions);
 
   if (response.body) {
-    let reader = response.body.getReader();
-    let decoder = new TextDecoder("utf-8");
+    const reader = response.body.getReader();
+    const decoder = new TextDecoder("utf-8");
     let result = "";
     while (true) {
       const { done, value } = await reader.read();
@@ -98,61 +92,71 @@ const makeAPIRequest = async (
 export const postRouter = createTRPCRouter({
   loginToSolarCloud: publicProcedure.mutation(async ({ ctx }) => {
     // login
-    const loginResponse = await makeAPIRequest(
-      "https://gateway.isolarcloud.com.hk/v1/userService/login",
-      {
-        appkey: APP_KEY,
-        api_key_param: { timestamp: Date.now(), nonce: generateRandomWord(32) },
-        user_account: "charliehaviland@gmail.com",
-        user_password: "iSSdph!9Ssz4B9V",
-      },
-      "",
-    );
+    const loginResponse: { result_data: { user_id: string; token: string } } =
+      await makeAPIRequest(
+        "https://gateway.isolarcloud.com.hk/v1/userService/login",
+        {
+          appkey: APP_KEY,
+          api_key_param: {
+            timestamp: Date.now(),
+            nonce: generateRandomWord(32),
+          },
+          user_account: "charliehaviland@gmail.com",
+          user_password: "iSSdph!9Ssz4B9V",
+        },
+        "",
+      );
 
     ctx.userId = loginResponse?.result_data?.user_id;
     ctx.userToken = loginResponse?.result_data?.token;
 
     return { success: true };
   }),
-  getCurrentSolarMetrics: publicProcedure.query(async ({ ctx }) => {
-    if (!ctx.userToken || !ctx.userId) {
-      throw new Error("User is not authenticated.");
-    }
-    if (!ctx.installationId) {
-      throw new Error("Installation ID not yet saved to context");
-    }
+  getCurrentSolarMetrics: publicProcedure.query(
+    async ({ ctx }): Promise<ISolarMetrics> => {
+      if (!ctx.userToken || !ctx.userId) {
+        throw new Error("User is not authenticated.");
+      }
+      if (!ctx.installationId) {
+        throw new Error("Installation ID not yet saved to context");
+      }
 
-    // get power station details
-    const powerStationResponse = await makeAPIRequest(
-      "https://gateway.isolarcloud.com.hk/v1/powerStationService/getPsDetail",
-      {
-        appkey: APP_KEY,
-        api_key_param: { timestamp: Date.now(), nonce: generateRandomWord(32) },
-        ps_id: ctx.installationId,
-        valid_flag: "1,3",
-        lang: "_en_US",
-        token: ctx.userToken,
-      },
-      ctx.userId,
-    );
+      // get power station details
+      const powerStationResponse: { result_data: ISolarMetrics } =
+        await makeAPIRequest(
+          "https://gateway.isolarcloud.com.hk/v1/powerStationService/getPsDetail",
+          {
+            appkey: APP_KEY,
+            api_key_param: {
+              timestamp: Date.now(),
+              nonce: generateRandomWord(32),
+            },
+            ps_id: ctx.installationId,
+            valid_flag: "1,3",
+            lang: "_en_US",
+            token: ctx.userToken,
+          },
+          ctx.userId,
+        );
 
-    // only return the desired properties
-    const {
-      data_last_update_time,
-      design_capacity,
-      co2_reduce_total,
-      install_date,
-      curr_power,
-      total_energy,
-    } = powerStationResponse?.result_data;
+      // only return the desired properties
+      const {
+        data_last_update_time,
+        design_capacity,
+        co2_reduce_total,
+        install_date,
+        curr_power,
+        total_energy,
+      } = powerStationResponse?.result_data;
 
-    return {
-      data_last_update_time,
-      design_capacity,
-      co2_reduce_total,
-      install_date,
-      curr_power,
-      total_energy,
-    };
-  }),
+      return {
+        data_last_update_time,
+        design_capacity,
+        co2_reduce_total,
+        install_date,
+        curr_power,
+        total_energy,
+      };
+    },
+  ),
 });

@@ -82,13 +82,13 @@ export const Education = () => {
             </h2>
             {section.studies
               .sort((a, b) => compareDesc(a.startDate, b.startDate))
-              .map((study) => {
+              .map((study, i) => {
                 const studyDuration = intervalToDuration({
                   start: new Date(study.startDate),
                   end: study.endDate ? new Date(study.endDate) : new Date(),
                 });
                 return (
-                  <div className="mb-8 flex flex-col md:flex-row">
+                  <div className="mb-8 flex flex-col md:flex-row" key={i}>
                     <div className="text-center md:w-1/3">
                       <h3 className="text-2xl">{study.institution}</h3>
                       <p className="text-sm text-gray-400">{`${format(study.startDate, "MMM yyyy")} - ${study.endDate ? format(study.endDate, "MMM yyyy") : "Present"}`}</p>
@@ -101,8 +101,8 @@ export const Education = () => {
                       <div className="pb-6">
                         <h4 className="text-lg italic">{study.award}</h4>
                         <ul className="ml-6 mt-2 list-disc space-y-2 text-sm">
-                          {study.description.map((desc) => (
-                            <li>{desc}</li>
+                          {study.description.map((desc, j) => (
+                            <li key={`${i}-${j}`}>{desc}</li>
                           ))}
                         </ul>
                       </div>

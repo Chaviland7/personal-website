@@ -47,17 +47,19 @@ const Interests = () => {
         <h2 className="mb-12 border-b border-white/50 pb-4 text-center text-4xl font-bold">
           Personal Interests
         </h2>
-        {interests.map((interest) => {
+        {interests.map((interest, i) => {
           return (
-            <div className="flex w-full flex-row">
+            <div className="flex w-full flex-row" key={i}>
               <div className="w-1/6 px-4">
                 <h4 className="text-center text-2xl font-bold">
                   {interest.title}
                 </h4>
               </div>
               <div className="mb-12 w-5/6 border-l border-white/50 pl-4">
-                {interest.descriptions.map((paragraph) => (
-                  <p className="pb-2">{paragraph}</p>
+                {interest.descriptions.map((paragraph, j) => (
+                  <p className="pb-2" key={`${i}-${j}`}>
+                    {paragraph}
+                  </p>
                 ))}
                 {interest.specialComponent ?? null}
               </div>

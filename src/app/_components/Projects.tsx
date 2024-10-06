@@ -60,12 +60,13 @@ export const Portfolio = () => {
         </h2>
 
         <div className="flex w-full flex-wrap">
-          {projects.map((project) => (
+          {projects.map((project, i) => (
             <div
               className="group m-3 w-[calc(50%-24px)] rounded-md bg-cover bg-center"
               style={{
                 backgroundImage: `url(/img/thumbnails/${project.thumbnailName})`,
               }}
+              key={i}
             >
               <div
                 style={{ transitionProperty: "background-color" }}
@@ -77,8 +78,8 @@ export const Portfolio = () => {
                       {project.title}
                     </h3>
                     <ul className="ml-6 mt-2 list-disc space-y-4">
-                      {project.description.map((d) => (
-                        <li>{d}</li>
+                      {project.description.map((d, j) => (
+                        <li key={`${i}-${j}`}>{d}</li>
                       ))}
                     </ul>
                   </div>{" "}

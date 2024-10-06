@@ -128,13 +128,13 @@ export const WorkExperience = () => {
         </h2>
         {jobs
           .sort((a, b) => compareDesc(a.startDate, b.startDate))
-          .map((job) => {
+          .map((job, i) => {
             const jobDuration = intervalToDuration({
               start: new Date(job.startDate),
               end: job.endDate ? new Date(job.endDate) : new Date(),
             });
             return (
-              <div className="mb-8 flex flex-col md:flex-row">
+              <div className="mb-8 flex flex-col md:flex-row" key={i}>
                 <div className="text-center md:w-1/3">
                   <h3 className="text-2xl">{job.companyName}</h3>
                   <p className="text-sm text-gray-400">{`${format(job.startDate, "MMM yyyy")} - ${job.endDate ? format(job.endDate, "MMM yyyy") : "Present"}`}</p>
@@ -145,12 +145,10 @@ export const WorkExperience = () => {
                 </div>
                 <div className="border-l border-white/30 pb-2 pl-12 md:w-2/3">
                   {job.roles
-                    .sort((a, b) =>
-                      compareDesc(a.startDate as Date, b.startDate as Date),
-                    )
-                    .map((role) => {
+                    .sort((a, b) => compareDesc(a.startDate!, b.startDate!))
+                    .map((role, j) => {
                       return (
-                        <div className="pb-6">
+                        <div className="pb-6" key={j}>
                           <h4 className="text-lg italic">
                             {role.title}{" "}
                             {role.startDate && (
@@ -164,8 +162,8 @@ export const WorkExperience = () => {
                             )}
                           </h4>
                           <ul className="ml-6 mt-2 list-disc space-y-2 text-sm">
-                            {role.description.map((desc) => (
-                              <li>{desc}</li>
+                            {role.description.map((desc, k) => (
+                              <li key={k}>{desc}</li>
                             ))}
                           </ul>
                         </div>

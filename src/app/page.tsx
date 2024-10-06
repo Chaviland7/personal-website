@@ -8,7 +8,7 @@ import { BackgroundSlideshow } from "./_components/Slideshow";
 import { SolarWidget } from "./_components/SolarWidget";
 import { WorkExperience } from "./_components/WorkExperience";
 
-export default async () => {
+const Home = async () => {
   return (
     <main className="relative flex min-h-screen flex-col text-white">
       <BackgroundSlideshow />
@@ -40,3 +40,5 @@ export default async () => {
     </main>
   );
 };
+
+export default Home;

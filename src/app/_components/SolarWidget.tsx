@@ -2,15 +2,8 @@ import { differenceInMinutes, format } from "date-fns";
 import { api } from "~/trpc/server";
 
 export const SolarWidget = async () => {
-  //   await api.post.loginToSolarCloud();
-  //   const metrics = await api.post.getCurrentSolarMetrics();
-  const metrics = {
-    data_last_update_time: "2024-09-29 13:35:00",
-    design_capacity: { unit: "kWp", value: "4.5" },
-    co2_reduce_total: { unit: "kg", value: 583.943 },
-    install_date: "2024-06-18 14:44:54",
-    curr_power: { unit: "W", value: "800" },
-  };
+  await api.post.loginToSolarCloud();
+  const metrics = await api.post.getCurrentSolarMetrics();
 
   const minutesAgo = differenceInMinutes(
     new Date(),
@@ -21,6 +14,7 @@ export const SolarWidget = async () => {
     <div className="group absolute right-0 top-0 h-[150px] w-[150px] transform overflow-hidden rounded-bl-full bg-purple-600 transition-all duration-500 ease-in-out hover:h-[600px] hover:w-[600px] hover:bg-purple-700">
       <div className="absolute right-[15px] top-[25px]">
         <img
+          alt="solar_panel_icon"
           className="h-[75px] w-[100px]"
           src="https://web3.isolarcloud.com.hk/lottie-assets/pv-with-meter/img_0.png"
         />

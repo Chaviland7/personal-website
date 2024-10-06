@@ -5,16 +5,13 @@ export const AboutMe = () => {
         A Brief Introduction
       </h2>
       <div className="flex">
-        {/* Left 1/3 for the image */}
         <div className="flex w-1/3 justify-center pl-36 pr-28">
           <img
-            src="/img/headshot.jpg" // replace with the actual path to your image
+            src="/img/headshot.jpg"
             alt="Professional Headshot"
             className="max-w-full rounded-full border-8"
           />
         </div>
-
-        {/* Right 2/3 for the text */}
         <div className="w-2/3 gap-12 pr-8">
           <p className="pb-6 text-2xl">
             I'm a software engineer by trade, and I've written code every work
