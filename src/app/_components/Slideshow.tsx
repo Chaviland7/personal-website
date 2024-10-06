@@ -29,7 +29,7 @@ const slides: ISlide[] = [
     caption: "Swimming | Bondi Beach, AU | 2023",
   },
   {
-    url: "pbang-mapah.png",
+    url: "pbangMapah.png",
     caption: "Sunset | Mae Hong Son, TH | 2017",
   },
 ];
