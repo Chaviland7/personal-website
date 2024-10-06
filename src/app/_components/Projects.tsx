@@ -20,7 +20,7 @@ export const Portfolio = () => {
     },
     {
       title: "This Website!",
-      githubLink: "https://github.com/Chaviland7",
+      githubLink: "https://github.com/Chaviland7/personal-website",
       thumbnailName: "website.png",
       description: [
         "It's a simple website, but it's deliberately over-engineered to showcase my experience with different technologies.",
