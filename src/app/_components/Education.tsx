@@ -1,5 +1,4 @@
-import { compareDesc, format, intervalToDuration } from "date-fns";
-import { getDurationString } from "./WorkExperience";
+import { compareDesc, format } from "date-fns";
 
 interface IEducation {
   institution: string;
@@ -83,18 +82,11 @@ export const Education = () => {
             {section.studies
               .sort((a, b) => compareDesc(a.startDate, b.startDate))
               .map((study, i) => {
-                const studyDuration = intervalToDuration({
-                  start: new Date(study.startDate),
-                  end: study.endDate ? new Date(study.endDate) : new Date(),
-                });
                 return (
                   <div className="mb-8 flex flex-col md:flex-row" key={i}>
                     <div className="text-center md:w-1/3">
                       <h3 className="text-2xl">{study.institution}</h3>
                       <p className="text-sm text-gray-400">{`${format(study.startDate, "MMM yyyy")} - ${study.endDate ? format(study.endDate, "MMM yyyy") : "Present"}`}</p>
-                      <p className="text-sm text-gray-400">
-                        {getDurationString(studyDuration)}
-                      </p>
                       <p className="text-sm text-gray-400">{study.location}</p>
                     </div>
                     <div className="border-l border-white/30 pb-2 pl-12 md:w-2/3">

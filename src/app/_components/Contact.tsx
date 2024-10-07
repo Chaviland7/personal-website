@@ -13,26 +13,30 @@ const ContactMe = () => {
           -William Butler Yeats
         </p>
         {/* Icons */}
-        <div className="mt-4 flex justify-center space-x-8">
+        <div className="mt-4 flex justify-center space-x-12">
           <a
+            target="_blank"
             href="mailto:charliehaviland@gmail.com"
             className="text-3xl hover:text-gray-400"
           >
             <FaEnvelope className="h-16 w-16" />
           </a>
           <a
+            target="_blank"
             href="https://linkedin.com/in/charlie-haviland"
             className="text-3xl hover:text-gray-400"
           >
             <FaLinkedin className="h-16 w-16" />
           </a>
           <a
+            target="_blank"
             href="https://github.com/Chaviland7"
             className="text-3xl hover:text-gray-400"
           >
             <FaGithub className="h-16 w-16" />
           </a>
           <a
+            target="_blank"
             href="https://www.goodreads.com/user/show/74756247-charlie-haviland"
             className="text-3xl hover:text-gray-400"
           >

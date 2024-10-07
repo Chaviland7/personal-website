@@ -40,7 +40,7 @@ export const BackgroundSlideshow = () => {
   useEffect(() => {
     const intervalId = setInterval(() => {
       setCurrentSlideIndex((prevIndex) => (prevIndex + 1) % slides.length);
-    }, 7500);
+    }, 5000);
 
     return () => clearInterval(intervalId);
   }, []);
