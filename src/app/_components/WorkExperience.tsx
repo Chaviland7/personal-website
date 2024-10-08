@@ -31,18 +31,29 @@ const jobs: IWorkExperience[] = [
         title: "Software Engineer",
         startDate: new Date("2019-03-01"),
         endDate: new Date("2020-05-01"),
-        description: ["Did a thing", "Did another thing"],
+        description: [
+          "Joined the company as a member of the software development team",
+          "Designed and Built parts of our web-based SaSS product in React (TS), Node (ExpressJS), and MongoDB.",
+        ],
       },
       {
         title: "Software Engineer & Customer Support Lead",
         startDate: new Date("2020-05-01"),
         endDate: new Date("2021-07-01"),
-        description: ["Did more stuff", "honestly, too much stuff"],
+        description: [
+          "During the pandemic our team shrunk and I became the head of customer support.",
+          "Talked directly with customers when onboarding new clients or responding to questions from dozens of existing clients.",
+          "Began to lead sales calls with prospective clients who wanted to better understand the technical details/capabilities of our software.",
+          "Began to take client feedback and turn it directly into new features for me to implement as a developer.",
+        ],
       },
       {
         title: "Technical Team Lead & Product Manager",
         startDate: new Date("2021-07-01"),
-        description: ["Even more stuff", "Quite a few tasks"],
+        description: [
+          "Transitioned to managing our growing team of 5 developers and took on more product ownership responsibilities.",
+          "I help facilitate (and translate) communication between management and our technical team as needed, to ensure that goals are on-track, features make sense, and priorities are being addressed correctly.",
+        ],
       },
     ],
   },
