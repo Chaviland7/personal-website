@@ -4,10 +4,11 @@ import { api } from "~/trpc/server";
 export const SolarWidget = async () => {
   await api.post.loginToSolarCloud();
   const metrics = await api.post.getCurrentSolarMetrics();
+  console.log(metrics);
 
   const minutesAgo = differenceInMinutes(
     new Date(),
-    new Date(metrics?.data_last_update_time),
+    new Date(`${metrics?.data_last_update_time}+07:00`),
   );
 
   return (
