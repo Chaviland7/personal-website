@@ -89,7 +89,7 @@ const makeAPIRequest = async (
   }
 };
 
-export const postRouter = createTRPCRouter({
+export const solarMetricsRouter = createTRPCRouter({
   loginToSolarCloud: publicProcedure.mutation(async ({ ctx }) => {
     // login
     const loginResponse: { result_data: { user_id: string; token: string } } =

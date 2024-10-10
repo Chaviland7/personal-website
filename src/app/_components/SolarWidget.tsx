@@ -2,9 +2,8 @@ import { differenceInMinutes, format } from "date-fns";
 import { api } from "~/trpc/server";
 
 export const SolarWidget = async () => {
-  await api.post.loginToSolarCloud();
-  const metrics = await api.post.getCurrentSolarMetrics();
-  console.log(metrics);
+  await api.solarMetrics.loginToSolarCloud();
+  const metrics = await api.solarMetrics.getCurrentSolarMetrics();
 
   const minutesAgo = differenceInMinutes(
     new Date(),
