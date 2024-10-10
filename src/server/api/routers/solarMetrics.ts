@@ -3,6 +3,7 @@ import NodeRSA from "node-rsa";
 
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
 
+const USER_PASSWORD = process.env.ISOLARCLOUD_USER_PASSWORD ?? "";
 const PUBLIC_KEY = process.env.ISOLARCLOUD_PUBLIC_KEY ?? "";
 const APP_KEY = process.env.ISOLARCLOUD_APP_KEY ?? "";
 const ACCESS_KEY = process.env.ISOLARCLOUD_ACCESS_KEY ?? "";
@@ -102,7 +103,7 @@ export const solarMetricsRouter = createTRPCRouter({
             nonce: generateRandomWord(32),
           },
           user_account: "charliehaviland@gmail.com",
-          user_password: "iSSdph!9Ssz4B9V",
+          user_password: USER_PASSWORD,
         },
         "",
       );
