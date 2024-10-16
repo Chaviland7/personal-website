@@ -16,7 +16,7 @@ export const SolarWidget = async () => {
         <img
           alt="solar_panel_icon"
           className="h-[75px] w-[100px]"
-          src="https://web3.isolarcloud.com.hk/lottie-assets/pv-with-meter/img_0.png"
+          src="img/solar_icon.png"
         />
       </div>
       <div className="text-xl text-white opacity-0 transition-opacity delay-200 duration-300 ease-in-out group-hover:opacity-100">

@@ -1,6 +1,31 @@
 import React from "react";
 import ConcertTimeline from "./Concerts";
 
+const WoodworkingPics = () => (
+  <div className="mt-4 flex max-h-96 justify-center space-x-8">
+    <div className="w-1/4">
+      <img
+        className="h-full w-full"
+        alt="cutting board"
+        src="img/woodworking/cutting_board.jpeg"
+      />
+    </div>
+    <div className="w-1/2">
+      <img
+        className="h-full w-full"
+        alt="bench"
+        src="img/woodworking/bench.jpeg"
+      />
+    </div>
+    <div className="w-1/4">
+      <img
+        className="h-full w-full"
+        alt="electric guitar"
+        src="img/woodworking/guitar.jpg"
+      />
+    </div>
+  </div>
+);
 interface IInterest {
   title: string;
   descriptions: string[];
@@ -27,9 +52,11 @@ const interests: IInterest[] = [
   {
     title: "Woodworking",
     descriptions: [
-      "For as long as I can remember music has played a big role in my life, from listening to classical music as a baby, to learning to play the guitar as a teenager, now playing many instruments whenever I have time.",
-      "Here's a timeline of all the concerts I've been lucky enough to go to throughout my life (hover for details).",
+      "In addition to the stuff I build virtually, I've developed a love for building tangible things, mainly through woodworking!",
+      "In college I thought it would be fun to build an electric guitar from scratch by following youtube videos, and as a homeowner in Thailand I've built out a small driveway workshop and built some cool things for around the house!",
+      "Here are some pictures of things I've built!",
     ],
+    specialComponent: <WoodworkingPics />,
   },
   {
     title: "Athletics / Exercise",
