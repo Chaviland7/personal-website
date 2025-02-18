@@ -69,8 +69,7 @@ export const solarMetricsRouter = createTRPCRouter({
         throw new Error("No power station data found");
       }
 
-      const powerStation = powerStationResponse.result_data
-        .pageList[0] as ISolarMetrics;
+      const powerStation = powerStationResponse.result_data.pageList[0]!;
 
       // only return the desired properties
       const {
