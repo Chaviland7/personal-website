@@ -9,7 +9,6 @@ export const env = createEnv({
   server: {
     NODE_ENV: z.enum(["development", "test", "production"]),
     ISOLARCLOUD_USER_PASSWORD: z.string(),
-    ISOLARCLOUD_PUBLIC_KEY: z.string(),
     ISOLARCLOUD_APP_KEY: z.string(),
     ISOLARCLOUD_ACCESS_KEY: z.string(),
     ISOLARCLOUD_INSTALLATION_ID: z.string(),
@@ -31,7 +30,6 @@ export const env = createEnv({
   runtimeEnv: {
     NODE_ENV: process.env.NODE_ENV,
     ISOLARCLOUD_USER_PASSWORD: process.env.ISOLARCLOUD_USER_PASSWORD,
-    ISOLARCLOUD_PUBLIC_KEY: process.env.ISOLARCLOUD_PUBLIC_KEY,
     ISOLARCLOUD_APP_KEY: process.env.ISOLARCLOUD_APP_KEY,
     ISOLARCLOUD_ACCESS_KEY: process.env.ISOLARCLOUD_ACCESS_KEY,
     ISOLARCLOUD_INSTALLATION_ID: process.env.ISOLARCLOUD_INSTALLATION_ID,

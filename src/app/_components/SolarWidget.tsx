@@ -7,7 +7,7 @@ export const SolarWidget = async () => {
 
   const minutesAgo = differenceInMinutes(
     new Date(),
-    new Date(`${metrics?.data_last_update_time}+07:00`),
+    new Date(metrics?.curr_power_update_time),
   );
 
   return (
@@ -24,8 +24,8 @@ export const SolarWidget = async () => {
           I'm Passionate About Climate Action!
         </p>
         <p className="absolute right-[60px] top-[150px] w-[450px] text-justify">
-          My {metrics?.design_capacity?.value} {metrics?.design_capacity?.unit}{" "}
-          home solar installation has reduced our household CO2 emissions by{" "}
+          My {metrics?.total_capcity?.value} {metrics?.total_capcity?.unit} home
+          solar installation has reduced our household CO2 emissions by{" "}
           {Math.round(metrics?.co2_reduce_total?.value)}{" "}
           {metrics?.co2_reduce_total?.unit} since it was installed on{" "}
           {format(new Date(metrics?.install_date), "MMM dd, yyyy")}
