@@ -48,11 +48,11 @@ const jobs: IWorkExperience[] = [
         ],
       },
       {
-        title: "Technical Team Lead & Product Manager",
+        title: "Software Engineering Manager & Product Lead",
         startDate: new Date("2021-07-01"),
         description: [
           "Transitioned to managing our growing team of 5 developers and took on more product ownership responsibilities.",
-          "I help facilitate (and translate) communication between management and our technical team as needed, to ensure that goals are on-track, features make sense, and priorities are being addressed correctly.",
+          "I help facilitate (and translate) communication between management and our technical team as needed, to ensure that goals are on-track, features make sense, and priorities are being evaluated correctly.",
         ],
       },
     ],
