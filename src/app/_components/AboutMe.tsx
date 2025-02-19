@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export const AboutMe = () => {
   return (
     <section className="relative w-full items-center justify-center bg-gradient-to-r from-[#81D4FA] to-[#E0F7FA] px-6 pb-20 pt-12 text-black">
@@ -6,10 +8,12 @@ export const AboutMe = () => {
       </h2>
       <div className="flex">
         <div className="flex w-1/3 justify-center pl-36 pr-28">
-          <img
+          <Image
             src="/img/headshot.jpg"
             alt="Professional Headshot"
             className="max-w-full rounded-full border-8"
+            width={300}
+            height={300}
           />
         </div>
         <div className="w-2/3 gap-12 pr-8">

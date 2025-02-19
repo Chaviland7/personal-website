@@ -13,9 +13,19 @@ export const Portfolio = () => {
       thumbnailName: "kycc.png",
       deploymentLink: "https://kyc-chain.com",
       description: [
-        "For the past 5+ years my primary project has been KYC-Chain, a ReactJS app with a Node/ExpressJS back-end and MongoDB",
+        "For the past 5+ years my primary work has been for KYC-Chain, a ReactJS app with a Node/ExpressJS back-end and MongoDB",
         "The app is closed-source, but I'm happy to show code snippets or product demos upon request.",
         "The company landing page is linked here below",
+      ],
+    },
+    {
+      title: "Chiang Mai Tennis",
+      deploymentLink: "https://chiang-mai-tennis.vercel.app/",
+      thumbnailName: "cmtennis.png",
+      description: [
+        "It's still in the early stages of development, but a friend and I are building a web app for the local tennis community here in Chiang Mai.",
+        "We're working on functoinality that will let players do new things like book courts online, find and book a coach, and discover new people to play with.",
+        "It's being built as a NextJS-based PWA, with a PostgreSQL database and NextJS API.",
       ],
     },
     {
@@ -24,8 +34,7 @@ export const Portfolio = () => {
       thumbnailName: "website.png",
       description: [
         "It's a simple website, but it's deliberately over-engineered to showcase my experience with different technologies.",
-        "It uses the T3 stack, with NextJS for client & server rendering, Tailwind CSS, and I'll soon add a Prism database & TRPC endpoints to fetch this data you're reading.",
-        "(Also the custom integration with my solar inverter was fun to build)",
+        "It uses the T3 stack, with NextJS for client & server rendering, Tailwind CSS, and an integration with my solar provider's API.",
       ],
     },
     {
@@ -37,17 +46,6 @@ export const Portfolio = () => {
         "In my last semester at NEU I helped lead a philosophy research project on social choice theory, using the example of ranking cute dogs.",
         "In addition to the philosophical work, I helped build a web app that allowed community members to vote on our dog contestants.",
         "Voting is no longer open, but many pages from the site are still there",
-      ],
-    },
-    {
-      title: "Tennis App",
-      githubLink: "https://github.com/Chaviland7/tennis-app",
-      deploymentLink: "https://tennis-kkk8ltyvy-chaviland7.vercel.app/",
-      thumbnailName: "tennis.png",
-      description: [
-        "My friend Luke is obsessed with tennis, and for his birthday I bought him the domain luke.tennis",
-        "To make it more of a present, I built a very simple web app that loads a random tennis highlights video from the Youtube API whenever the page loads",
-        "It's about as simple as a web app can be, but it was fun to spend a few hours building it.",
       ],
     },
   ];

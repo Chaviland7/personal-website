@@ -1,27 +1,34 @@
 import React from "react";
 import ConcertTimeline from "./Concerts";
+import Image from "next/image";
 
 const WoodworkingPics = () => (
-  <div className="mt-4 flex max-h-96 justify-center space-x-8">
-    <div className="w-1/4">
-      <img
-        className="h-full w-full"
+  <div className="mt-4 flex max-h-[23rem] justify-center space-x-8">
+    <div className="max-h-full w-1/4">
+      <Image
+        width={400}
+        height={600}
         alt="cutting board"
-        src="img/woodworking/cutting_board.jpeg"
+        src="/img/woodworking/cutting_board.jpeg"
+        className="max-h-full"
       />
     </div>
-    <div className="w-1/2">
-      <img
-        className="h-full w-full"
+    <div className="max-h-full w-1/2">
+      <Image
+        width={1000}
+        height={600}
         alt="bench"
-        src="img/woodworking/bench.jpeg"
+        src="/img/woodworking/bench.jpeg"
+        className="max-h-full"
       />
     </div>
-    <div className="w-1/4">
-      <img
-        className="h-full w-full"
+    <div className="max-h-full w-1/4">
+      <Image
+        width={400}
+        height={600}
         alt="electric guitar"
-        src="img/woodworking/guitar.jpg"
+        src="/img/woodworking/guitar.jpg"
+        className="max-h-full"
       />
     </div>
   </div>

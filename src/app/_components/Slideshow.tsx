@@ -34,10 +34,23 @@ const slides: ISlide[] = [
   },
 ];
 
+// Add preload function
+const preloadImages = () => {
+  slides.forEach((slide) => {
+    const img = new Image();
+    img.src = `/img/slideshow/${slide.url}`;
+  });
+};
+
 export const BackgroundSlideshow = () => {
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
+  const [imagesLoaded, setImagesLoaded] = useState(false);
 
   useEffect(() => {
+    // Preload all images
+    preloadImages();
+    setImagesLoaded(true);
+
     const intervalId = setInterval(() => {
       setCurrentSlideIndex((prevIndex) => (prevIndex + 1) % slides.length);
     }, 5000);
@@ -55,8 +68,18 @@ export const BackgroundSlideshow = () => {
           }`}
           style={{
             backgroundImage: `url(/img/slideshow/${slide.url})`,
+            backgroundColor: "#000000",
           }}
         >
+          {/* Add a low-quality placeholder while loading */}
+          {!imagesLoaded && (
+            <div
+              className="absolute inset-0 bg-cover bg-center blur-lg"
+              style={{
+                backgroundImage: `url(/img/slideshow/thumbnails/${slide.url})`,
+              }}
+            />
+          )}
           {index === currentSlideIndex && (
             <p className="text-shadow absolute bottom-[10px] left-[10px] text-2xl font-[450] text-white">
               {slide.caption}
